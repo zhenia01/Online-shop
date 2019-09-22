@@ -89,7 +89,7 @@ main {
   margin: 0;
   min-height: 10rem;
   display: grid;
-  gap: 2em;
+  gap: 1.5em;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: max-content;
 }
@@ -110,6 +110,7 @@ main {
 .card-img {
   display: block;
   height: 300px;
+  min-width: 270px;
   margin: 0 auto;
 }
 
@@ -203,7 +204,7 @@ footer {
   margin: 0 auto;
 }
 
-@media (max-width:1000px) {
+@media (max-width:1023px) {
   .header {
     height: 2.5rem;
   }
