@@ -15,12 +15,12 @@ body {
   min-height: 100vh;
   display: grid;
   gap: 5px;
-  grid-template-columns: repeat(16, 1fr);
-  grid-template-rows: 3rem auto 140px;
+  grid-template-columns: repeat(18, 1fr);
+  grid-template-rows: 3rem auto 130px;
   grid-template-areas:
-    "h h h h h h h h h h h h h h h h"
-    ". m m m m m m m m m m m m m m ."
-    "f f f f f f f f f f f f f f f f"
+    "h h h h h h h h h h h h h h h h h h"
+    ". m m m m m m m m m m m m m m m m ."
+    "f f f f f f f f f f f f f f f f f f"
 }
 
 header {
@@ -102,6 +102,7 @@ main {
 
 .card {
   padding: 0.5rem;
+  min-width: 300px;
   position: relative;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.075);
@@ -109,9 +110,10 @@ main {
 
 .card-img {
   display: block;
-  height: 300px;
-  min-width: 270px;
+  height: 400px;
+  width: 100%;
   margin: 0 auto;
+  padding: 1rem;
 }
 
 .card-title {
@@ -243,7 +245,7 @@ footer {
   }
 
   .card-img {
-    width: 50%;
+    min-width: 300px;
   }
 }
 
