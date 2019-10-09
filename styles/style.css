@@ -31,6 +31,7 @@ header {
   position: fixed;
   grid-area: h;
   z-index: 99;
+  border: 0;
 }
 
 .navbar-nav {
@@ -39,12 +40,27 @@ header {
   display: flex;
   justify-content: flex-end;
   list-style-type: none;
+  width: 100%;
 }
 
 .logo {
   position: absolute;
   height: 3rem;
   margin-left: 10px;
+}
+
+.navbar-menu-button {
+  height: 2.5rem;
+  position: absolute;
+  margin-left: 10px;
+  visibility: hidden;
+}
+
+.cart {
+  height: 3rem;
+  position: absolute;
+  right: 1em;
+  top: 0;
 }
 
 .nav-item:first-child {
@@ -112,6 +128,8 @@ main {
   display: block;
   height: 400px;
   width: 100%;
+  min-width: 300px;
+  max-width: 450px;
   margin: 0 auto;
   padding: 1rem;
 }
@@ -206,34 +224,50 @@ footer {
   margin: 0 auto;
 }
 
-@media (max-width:1023px) {
-  .header {
-    height: 2.5rem;
+@media (max-width:1023px) {   
+  .goods-container {
+    grid-template-columns: 1fr 1fr;
   }
 
+  main > .goods-section {
+    font-size: 1.5em;
+  }
+}
+
+
+@media (max-width:700px) {
+  main > .goods-section {
+    font-size: 2em;
+  }
+
+  .goods-container {
+    grid-template-columns: 1fr;
+  }
+  
   .navbar-nav {
     display: none;
+  }
+
+  .navbar-menu-button {
+    visibility: visible;
   }
 
   .nav-item {
     visibility: hidden;
   }
 
+  .nav-item:first-child {
+    display: none;
+  }
+
+  .nav-item:last-child {
+    display: none;
+  }
+
   .logo {
     position: static;
     display: block;
     margin: 0 auto;
-  }
-
-  .goods-container {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-
-@media (max-width:700px) {
-  .goods-container {
-    grid-template-columns: 1fr;
   }
 
   header {
@@ -244,8 +278,17 @@ footer {
     height: 2.5rem;
   }
 
+  .cart {
+    height: 2.5rem;
+  }
+
   .card-img {
     min-width: 300px;
+  }
+
+  .card-buy {
+    width: 8rem;
+    height: 3rem;
   }
 }
 
