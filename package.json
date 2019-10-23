@@ -1,0 +1,27 @@
+{
+  "name": "online-shop",
+  "version": "1.0.0",
+  "description": "lab03 ",
+  "main": "scripts\\index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhenya01/Online-shop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhenya01/Online-shop/issues"
+  },
+  "homepage": "https://github.com/zhenya01/Online-shop#readme",
+  "dependencies": {
+    "jquery": "^3.4.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
+  }
+}
