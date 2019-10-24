@@ -8,6 +8,7 @@ $(function () {
   });
   //////
 
+  let goodsInCart = [];
   let goodsCount = 0;
   let $goodsCountElement = $(".goods-count");
 
@@ -23,11 +24,14 @@ $(function () {
     }
   });
 
-  let goodsInCart = [];
+  function setGoodsCount(isInc) {
+    $goodsCountElement.text((isInc ? ++goodsCount : --goodsCount).toString());
+    $(".cart-img").css("right", ($goodsCountElement.width() + 10).toString() + "px");
+  }
+
 
   $(".card-buy").on("click", (event) => {
-    $goodsCountElement.text(++goodsCount);
-    $(".cart-img").css("right", ($goodsCountElement.width() + 10).toString() + "px");
+    setGoodsCount(true);
 
     let $goods = $(event.currentTarget).parent().parent();
     let goodsName = $goods.children().eq(1).children(":first").children(":first").text();
@@ -58,7 +62,7 @@ $(function () {
       $goods.append(`
       <div class='cart-item-count-setter'>
         <img src="./img/minus.png" alt="-" class="cart-item-dec-count">
-        <span class="cart-item-count">1</span>
+        <div class="cart-item-count">1</div>
         <img src="./img/plus.png" alt="+" class="cart-item-inc-count">
       </div>`);
       $cart.append($goods);
@@ -79,40 +83,52 @@ $(function () {
     }
 
     $(".total-price").text(totalPrice.toString());
-  };
+  }
 
   function updateCountInCart(goodsName, count) {
     let $countElem = $cart.find(".card .card-body .card-title-link:contains(" + goodsName + ")").parent().parent().parent().children(".cart-item-count-setter");
     $countElem.children().eq(1).text(count.toString());
   }
 
-  // function deleteFromCart()
+  function deleteFromCart($goods, index) {
+    goodsInCart.splice(index, 1)
+    $goods.remove();
+
+    if (goodsInCart.length === 0) {
+      $.modal.close();
+      $("#empty-cart-modal").modal();
+    }
+  }
 
   $cart.on("click", ".cart-item-inc-count", (event) => {
-    let goodsName = $(event.currentTarget).parent().siblings().eq(1).children(":first").children(":first").text();
+    let $goods =  $(event.currentTarget).parent().parent();
+    let goodsName = $(event.currentTarget).parent().siblings().eq(1)
+      .children(":first").children(":first").text();
 
     for (let i = 0; i < goodsInCart.length; i++) {
       if (goodsInCart[i].name === goodsName) {
-        if (++goodsInCart[i].count === 0) {
-          goodsInCart.splice(i, 1)
-        } else {
-          updateCountInCart(goodsName, goodsInCart[i].count);
-        }
+        setGoodsCount(true);
+        updateCountInCart(goodsName, ++goodsInCart[i].count);
+        countTotalPrice();
         break;
       }
     }
   });
 
   $cart.on("click", ".cart-item-dec-count", (event) => {
-    let goodsName = $(event.currentTarget).parent().siblings().eq(1).children(":first").children(":first").text();
+    let $goods =  $(event.currentTarget).parent().parent();
+    let goodsName = $(event.currentTarget).parent().siblings().eq(1)
+      .children(":first").children(":first").text();
 
     for (let i = 0; i < goodsInCart.length; i++) {
       if (goodsInCart[i].name === goodsName) {
+        setGoodsCount(false);
         if (--goodsInCart[i].count === 0) {
-          goodsInCart.splice(i, 1)
+          deleteFromCart($goods, i)
         } else {
           updateCountInCart(goodsName, goodsInCart[i].count);
         }
+        countTotalPrice();
         break;
       }
     }
