@@ -38,35 +38,22 @@ $(function () {
     for (let i of goodsInCart) {
       if (i.name == goodsName) {
         isInCart = true;
+        i.count++;
         break;
       }
     }
-
-    goodsInCart.push({
-      name: goodsName,
-      count: 1
-    })
-
-    if (isInCart) {
-
-    } else {
+    if (!isInCart) {
+      goodsInCart.push({
+        name: goodsName,
+        count: 1
+      })
+  
       $goods = $goods.clone();
       $goods.children().last().children().last().remove();
-      $goods.append("<div class='count-setter'>KEK</div>")
+      // $goods.append("<div class='count-setter'>KEK</div>")
       $cart.append($goods);
     }
-
-    // $goods.children().last().children().last().remove();
-    // $goods.append("<div class='count-setter'>KEK</div>")
-    // $cart.append($goods);
   });
-  //////
-
-  // adding goods to cart
-
-  //////
-
-
 })
 
 
