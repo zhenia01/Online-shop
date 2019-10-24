@@ -74,7 +74,7 @@ header {
 .goods-count {
   position: absolute;
   line-height: 3rem;
-  height:3rem;
+  height: 3rem;
   text-align: center;
   right: 0.5rem;
   top: 0;
@@ -243,17 +243,21 @@ main {
   box-shadow: none;
 }
 
-/* .cart .count-setter {
+.cart-item-count-setter {
   display: block;
   position: absolute;
   margin-bottom: 5px;
   margin-right: 5px;
   bottom: 0;
-  right: 0;
+  right: 1rem;
   font-size: 1.2rem;
-  width: 5rem;
+  width: max-content;
   height: 2.5rem;
-} */
+}
+
+.total-price {
+  display: none;
+}
 
 .cart .card-img {
   min-width: unset;
@@ -261,6 +265,16 @@ main {
 
 #empty-cart-modal {
   font-size: 1.5rem;
+}
+
+.cart-item-count {
+  font-size: 2rem;
+}
+
+.cart-item-inc-count,
+.cart-item-dec-count {
+  display: inline-block;
+  width: 1.5rem;
 }
 
 .modal {
