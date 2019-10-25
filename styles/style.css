@@ -282,10 +282,46 @@ main {
   border: 1px solid rgba(0, 0, 0, 0.075);
 }
 
+.cart-item-inc-count:hover ,
+.cart-item-dec-count:hover {
+  background-color: rgb(216, 206, 245);
+}
+
 .cart-item-delete {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
+}
+
+.total-price {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  padding-right: 1rem;
+  width: 100%;
+  text-align: right;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.cart-buy {
+  display: inline-block;
+  float: right;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  font-size: 1.8rem;
+  width: 7rem;
+  height: 3.5rem;
+  border-radius: 10px;
+  background-color: rgba(104, 75, 200, 0.924);
+  border: none;
+  color: white;
+  opacity: 0.7;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.cart-buy:hover {
+  opacity: 1
 }
 
 .modal {

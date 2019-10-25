@@ -18,7 +18,7 @@ $(function () {
     if (goodsCount > 0) {
       $("#cart-modal").modal();
       $cart.css("display", "grid");
-      $(".total-price").css("display", "initial");
+      $(".total-price").css("display", "inline-block");
     } else {
       $("#empty-cart-modal").modal();
     }
@@ -84,7 +84,7 @@ $(function () {
       }
     }
 
-    $(".total-price").text(totalPrice.toString());
+    $(".total-price").text("Total price: " + totalPrice.toString());
   }
 
   function updateCountInCart(goodsName, count) {
