@@ -24,14 +24,15 @@ $(function () {
     }
   });
 
-  function setGoodsCount(isInc) {
-    $goodsCountElement.text((isInc ? ++goodsCount : --goodsCount).toString());
+  function setGoodsCount(value) {
+    goodsCount += value;
+    $goodsCountElement.text(goodsCount.toString());
     $(".cart-img").css("right", ($goodsCountElement.width() + 10).toString() + "px");
   }
 
 
   $(".card-buy").on("click", (event) => {
-    setGoodsCount(true);
+    setGoodsCount(1);
 
     let $goods = $(event.currentTarget).parent().parent();
     let goodsName = $goods.find(".card-title").text();
@@ -60,6 +61,7 @@ $(function () {
       $goods = $goods.clone();
       $goods.find('.card-buy').remove();
       $goods.append(`
+      <img src="./img/trash.png" alt="trash" class="cart-item-delete">
       <div class='cart-item-count-setter'>
         <img src="./img/minus.png" alt="-" class="cart-item-dec-count">
         <div class="cart-item-count">1</div>
@@ -106,7 +108,7 @@ $(function () {
 
     for (let i = 0; i < goodsInCart.length; i++) {
       if (goodsInCart[i].name === goodsName) {
-        setGoodsCount(true);
+        setGoodsCount(1);
         updateCountInCart(goodsName, ++goodsInCart[i].count);
         countTotalPrice();
         break;
@@ -120,12 +122,25 @@ $(function () {
 
     for (let i = 0; i < goodsInCart.length; i++) {
       if (goodsInCart[i].name === goodsName) {
-        setGoodsCount(false);
+        setGoodsCount(-1);
         if (--goodsInCart[i].count === 0) {
           deleteFromCart($goods, i)
         } else {
           updateCountInCart(goodsName, goodsInCart[i].count);
         }
+        countTotalPrice();
+        break;
+      }
+    }
+  });
+
+  $cart.on("click", ".cart-item-delete", (event) => {
+    let $goods =  $(event.currentTarget).parent();
+    let goodsName = $goods.find('.card-title').text();
+    for (let i = 0; i < goodsInCart.length; i++) {
+      if (goodsInCart[i].name === goodsName) {
+        setGoodsCount(-goodsInCart[i].count);
+        deleteFromCart($goods, i)
         countTotalPrice();
         break;
       }

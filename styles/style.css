@@ -280,7 +280,12 @@ main {
   display: inline-block;
   width: 2.3rem;
   border: 1px solid rgba(0, 0, 0, 0.075);
+}
 
+.cart-item-delete {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 
 .modal {
