@@ -34,8 +34,8 @@ $(function () {
     setGoodsCount(true);
 
     let $goods = $(event.currentTarget).parent().parent();
-    let goodsName = $goods.children().eq(1).children(":first").children(":first").text();
-    let goodsPrice = $goods.children().eq(1).children().eq(1).children(":first").text();
+    let goodsName = $goods.find(".card-title").text();
+    let goodsPrice = $goods.find(".item-price").text();
     goodsPrice = parseInt(goodsPrice);
     console.log(goodsPrice);
 
@@ -58,7 +58,7 @@ $(function () {
       })
 
       $goods = $goods.clone();
-      $goods.children().last().children().last().remove();
+      $goods.find('.card-buy').remove();
       $goods.append(`
       <div class='cart-item-count-setter'>
         <img src="./img/minus.png" alt="-" class="cart-item-dec-count">
@@ -87,7 +87,7 @@ $(function () {
 
   function updateCountInCart(goodsName, count) {
     let $countElem = $cart.find(".card .card-body .card-title-link:contains(" + goodsName + ")").parent().parent().parent().children(".cart-item-count-setter");
-    $countElem.children().eq(1).text(count.toString());
+    $countElem.find('.cart-item-count').text(count.toString());
   }
 
   function deleteFromCart($goods, index) {
@@ -102,8 +102,7 @@ $(function () {
 
   $cart.on("click", ".cart-item-inc-count", (event) => {
     let $goods =  $(event.currentTarget).parent().parent();
-    let goodsName = $(event.currentTarget).parent().siblings().eq(1)
-      .children(":first").children(":first").text();
+    let goodsName = $goods.find('.card-title').text();
 
     for (let i = 0; i < goodsInCart.length; i++) {
       if (goodsInCart[i].name === goodsName) {
@@ -117,8 +116,7 @@ $(function () {
 
   $cart.on("click", ".cart-item-dec-count", (event) => {
     let $goods =  $(event.currentTarget).parent().parent();
-    let goodsName = $(event.currentTarget).parent().siblings().eq(1)
-      .children(":first").children(":first").text();
+    let goodsName = $goods.find('.card-title').text();
 
     for (let i = 0; i < goodsInCart.length; i++) {
       if (goodsInCart[i].name === goodsName) {
