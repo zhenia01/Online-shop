@@ -1,5 +1,13 @@
 "use strict"
 
+import './scss/style.scss'
+import './scss/menu.scss'
+import $ from "jquery"
+import "jquery-modal"
+import "jquery-modal/jquery.modal.min.css"
+// import $ from "jquery"
+// import $.modal from 'jquery-modal'
+
 $(function () {
   // menu on small screens
   $(".navbar-menu-button").on("click", () => {
