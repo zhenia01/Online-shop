@@ -19,6 +19,7 @@ $(function () {
       $("#cart-modal").modal();
       $cart.css("display", "grid");
       $(".total-price").css("display", "inline-block");
+      $(".cart-buy").css("display", "inline-block");
     } else {
       $("#empty-cart-modal").modal();
     }
@@ -38,7 +39,6 @@ $(function () {
     let goodsName = $goods.find(".card-title").text();
     let goodsPrice = $goods.find(".item-price").text();
     goodsPrice = parseInt(goodsPrice);
-    console.log(goodsPrice);
 
     let isInCart = false;
     let count = 1;
@@ -69,7 +69,7 @@ $(function () {
       </div>`);
       $cart.append($goods);
     } else {
-      updateCountInCart(goodsName, count)
+      updateCountInCart($cart.find(".card").has(`.card-body .card-title-link:contains(${goodsName})`), count)
     }
 
     countTotalPrice(goodsInCart)
@@ -84,12 +84,11 @@ $(function () {
       }
     }
 
-    $(".total-price").text("Total price: " + totalPrice.toString());
+    $(".total-price").text("Total price: " + totalPrice.toString() + " грн");
   }
 
-  function updateCountInCart(goodsName, count) {
-    let $countElem = $cart.find(".card .card-body .card-title-link:contains(" + goodsName + ")").parent().parent().parent().children(".cart-item-count-setter");
-    $countElem.find('.cart-item-count').text(count.toString());
+  function updateCountInCart($goods, count) {
+    $goods.find(".cart-item-count").text(count.toString());
   }
 
   function deleteFromCart($goods, index) {
@@ -103,13 +102,13 @@ $(function () {
   }
 
   $cart.on("click", ".cart-item-inc-count", (event) => {
-    let $goods =  $(event.currentTarget).parent().parent();
+    let $goods = $(event.currentTarget).parent().parent();
     let goodsName = $goods.find('.card-title').text();
 
     for (let i = 0; i < goodsInCart.length; i++) {
       if (goodsInCart[i].name === goodsName) {
         setGoodsCount(1);
-        updateCountInCart(goodsName, ++goodsInCart[i].count);
+        updateCountInCart($goods, ++goodsInCart[i].count);
         countTotalPrice();
         break;
       }
@@ -117,7 +116,7 @@ $(function () {
   });
 
   $cart.on("click", ".cart-item-dec-count", (event) => {
-    let $goods =  $(event.currentTarget).parent().parent();
+    let $goods = $(event.currentTarget).parent().parent();
     let goodsName = $goods.find('.card-title').text();
 
     for (let i = 0; i < goodsInCart.length; i++) {
@@ -126,7 +125,7 @@ $(function () {
         if (--goodsInCart[i].count === 0) {
           deleteFromCart($goods, i)
         } else {
-          updateCountInCart(goodsName, goodsInCart[i].count);
+          updateCountInCart($goods, goodsInCart[i].count);
         }
         countTotalPrice();
         break;
@@ -135,7 +134,7 @@ $(function () {
   });
 
   $cart.on("click", ".cart-item-delete", (event) => {
-    let $goods =  $(event.currentTarget).parent();
+    let $goods = $(event.currentTarget).parent();
     let goodsName = $goods.find('.card-title').text();
     for (let i = 0; i < goodsInCart.length; i++) {
       if (goodsInCart[i].name === goodsName) {
@@ -147,5 +146,3 @@ $(function () {
     }
   });
 });
-
-

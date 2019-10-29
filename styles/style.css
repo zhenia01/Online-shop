@@ -68,7 +68,8 @@ header {
 }
 
 .cart-img:hover {
-  background-color: aliceblue;
+  border: 2px solid #fff;
+  background-color: #fff;
 }
 
 .goods-count {
@@ -293,6 +294,10 @@ main {
   right: 0.5rem;
 }
 
+.cart-item-delete:hover {
+  border: 2px solid #000;
+}
+
 .total-price {
   margin-top: 1rem;
   margin-bottom: 0;
@@ -304,7 +309,7 @@ main {
 }
 
 .cart-buy {
-  display: inline-block;
+  display: none;
   float: right;
   margin-right: 1rem;
   margin-top: 1rem;
@@ -386,6 +391,11 @@ footer {
 
   .navbar-menu-button {
     visibility: visible;
+  }
+
+  .navbar-menu-button:hover {
+    border: 2px solid #fff;
+    background-color: #fff;
   }
 
   .nav-item {
