@@ -5,16 +5,12 @@ import './scss/menu.scss'
 import $ from "jquery"
 import "jquery-modal"
 import "jquery-modal/jquery.modal.min.css"
-// import $ from "jquery"
-// import $.modal from 'jquery-modal'
 
 $(function () {
-  // menu on small screens
   $(".navbar-menu-button").on("click", () => {
     $(".navbar-nav").toggleClass("menu-open");
     $(".navbar-nav .nav-item").toggleClass("menu-open");
   });
-  //////
 
   let goodsInCart = [];
   let goodsCount = 0;
